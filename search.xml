@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title>数据处理之Data.table包</title>
+      <link href="/2018/04/06/Data.table/"/>
+      <url>/2018/04/06/Data.table/</url>
+      <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>install.packages(“data.table”)<br>library(data.table)</p><p>Data.table 与data.frame可互相转换</p><blockquote><p>dt &lt;- data.table(a=c(‘A’,’B’,’C’,’A’,’A’,’B’),b=rnorm(6))<br>dt2&lt;-data.frame(dt)</p></blockquote><blockquote><p>df&lt;-data.frame(a=c(‘A’,’B’,’C’,’A’,’A’,’B’),b=rnorm(6))<br>df2&lt;-data.table(df)</p></blockquote><h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><p>DT[I, j, by]<br>I=   筛选<br>J=   运算函数<br>By=分组</p><p>keyby可根据设定分组排序，同时设定key</p><a id="more"></a><h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><ul><li><p>取第二行的数据</p><blockquote><p>dt[2,]</p></blockquote></li><li><p>不加<code>,</code>也可以</p><blockquote><p>dt[2]</p></blockquote></li><li><p>取前两行</p><blockquote><p>dt[1:2]</p></blockquote></li><li><p>取a列的值</p><blockquote><p>dt[, a]<br>或<br>dt$a</p></blockquote></li><li><p>取a列值，且返回data.table</p><blockquote><p>dt[, list(a)]<br>或<br>dt[, .(a)]      # <code>.()</code>等同<code>list()</code></p></blockquote></li><li><p>取多列</p><blockquote><p>dt[, .(a,b)]<br>或<br>dt[,a:b]  #a到b列</p></blockquote></li><li><p>取除a以外的列</p><blockquote><p>dt[, -a]</p></blockquote></li><li><p>取a列中值为B的行</p><blockquote><p>dt[a==”B”,]<br>   a        b<br>1: B 1.487069<br>2: B 1.107642</p></blockquote></li><li><p>多个筛选条件用<code>&amp;</code>连接</p><blockquote><p>dt[a==”B” &amp; b==”5”,]</p></blockquote></li><li><p><code>.N</code>计算子集行数</p><blockquote><p>dt[a==”B”, .N]</p></blockquote></li><li><p>取a列中值为B的行的判断</p><blockquote><p>dt[,a==’B’]<br>[1] FALSE  TRUE FALSE FALSE FALSE  TRUE</p></blockquote></li></ul><h1 id="设置a列为索引列"><a href="#设置a列为索引列" class="headerlink" title="设置a列为索引列"></a>设置a列为索引列</h1><blockquote><p>setkey(dt,a)</p></blockquote><ul><li><p>取a列中值为B的行</p><blockquote><p>dt[“B”,]</p></blockquote></li><li><p>取a列中值为B的行，并保留第一行</p><blockquote><p>dt[“B”,mult=”first”]</p></blockquote></li><li><p>取a列中值为B的行，并保留最后一行</p><blockquote><p>dt[“B”,mult=”last”]</p></blockquote></li><li><p>取a列中值为b的行，没有数据则为NA</p><blockquote><p>dt[“b”]</p></blockquote></li></ul><h1 id="对data-table对象进行增、删、改操作"><a href="#对data-table对象进行增、删、改操作" class="headerlink" title="对data.table对象进行增、删、改操作"></a>对data.table对象进行增、删、改操作</h1><ul><li><p>增加1列，列名为c</p><blockquote><p>dt[,c:=b+2]</p></blockquote></li><li><p>增加2列，列名为c1,c2</p><blockquote><p>dt[,`:=`(c1 = 1:6, c2 = 2:7)]<br>或者<br>dt[,c(‘d1’,’d2’):=list(1:6,2:7)]</p></blockquote></li><li><p>删除c1列</p><blockquote><p>dt[,c1:=NULL]</p></blockquote></li><li>同时删除d1,d2列<blockquote><p>dt[,c(‘d1’,’d2’):=NULL]</p></blockquote></li></ul><h2 id="给b赋值为30"><a href="#给b赋值为30" class="headerlink" title="给b赋值为30"></a>给b赋值为30</h2><blockquote><p>dt[,b:=30]</p></blockquote><ul><li>对a列值为B的行，c2列值值大于3的行，的b列赋值为100<blockquote><p>dt[a==’B’ &amp; c2&gt;3, b:=100]<br>或&gt; dt[,b:=ifelse(a==’B’ &amp; c2&gt;3,50,b)]</p></blockquote></li></ul><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><blockquote><p>dt[order(a,-b)]    #<code>-</code>表示逆序, <code>!</code>同</p></blockquote><h2 id="分组计算"><a href="#分组计算" class="headerlink" title="分组计算"></a>分组计算</h2><ul><li>对整个b列数据求和<blockquote><p>dt[,sum(b)]</p></blockquote></li><li><p>按a列分组，并对b列按分组求和</p><blockquote><p>dt[,sum(b),by=a]</p></blockquote></li><li><p>分组计数</p><blockquote><p>dt[, .(.N), by=”a”]<br>Also<br>dt[, .N, by=a]</p></blockquote></li><li><p>分组计算并排序</p><blockquote><p>dt[, .N, by=.(a)[order(a)]]</p></blockquote></li><li><p><code>.SD</code>可按<code>by</code>分组取子集，同时不显示by的分组</p><blockquote><p>dt[, lapply(.SD,mean), by=a]</p></blockquote></li><li><p><code>.SDcols</code>选取特定列进行函数计算</p><blockquote><p>dt[,lapply(.SD,mean), by=.(a), .Sdcols=.(b)]</p></blockquote></li><li><p>连续操作</p><blockquote><p>dt[…][…][…]  #类似管道符</p></blockquote></li></ul><h1 id="多个data-table的连接操作"><a href="#多个data-table的连接操作" class="headerlink" title="多个data.table的连接操作"></a>多个data.table的连接操作</h1><ul><li><p>设置score数据集，key为stuId</p><blockquote><p>setkey(score,”stuId”)</p></blockquote></li><li><p>设置student数据集，key为id</p><blockquote><p>setkey(student,”id”)</p></blockquote></li><li><p>合并两个数据集的数据</p><blockquote><p>student[score,nomatch=NA,mult=”all”]</p></blockquote></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> R语言 </category>
+          
+          <category> 数据处理 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> R </tag>
+            
+            <tag> data.table </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>系统发育树建树工具-FastTree使用</title>
+      <link href="/2018/04/06/FastTree/"/>
+      <url>/2018/04/06/FastTree/</url>
+      <content type="html"><![CDATA[<h1 id="下载及环境配置"><a href="#下载及环境配置" class="headerlink" title="下载及环境配置"></a>下载及环境配置</h1><p>FastTree<a href="http://www.microbesonline.org/fasttree/#Install" target="_blank" rel="noopener">软件下载地址</a></p><p>下载对应版本。对于windows用户还需安装<a href="https://www.jianshu.com/p/ff24a81f3637" target="_blank" rel="noopener">gcc</a>和<a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git" target="_blank" rel="noopener">Git</a></p><h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p>在FastTree.exe所在目录右键空白运行Git Bash</p><p>在Git窗口输入<code>./FastTree -gtr -nt your_sequence_file_location/yourfile.fasta &gt; tree_file.tree</code></p><p>上述代码表示，将你的序列文件（fasta格式）使用GTR+CAT model，建立系统发育树，输出.tree文件到当前目录。.tree文件可进一步分析或者可视化。</p><p>模型及参数选择请根据文献及官方文档</p><a id="more"></a><h1 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h1><p>Usage for FastTree version 2.1.10 No SSE3:<br>  FastTree protein_alignment &gt; tree<br>  FastTree &lt; protein_alignment &gt; tree<br>  FastTree -out tree protein_alignment<br>  FastTree -nt nucleotide_alignment &gt; tree<br>  FastTree -nt -gtr &lt; nucleotide_alignment &gt; tree<br>  FastTree &lt; nucleotide_alignment &gt; tree<br>FastTree accepts alignments in fasta or phylip interleaved formats</p><p>Common options (must be before the alignment file):<br>  -quiet to suppress reporting information<br>  -nopr to suppress progress indicator<br>  -log logfile – save intermediate trees, settings, and model details<br>  -fastest – speed up the neighbor joining phase &amp; reduce memory usage<br>        (recommended for &gt;50,000 sequences)<br>  -n <number> to analyze multiple alignments (phylip format only)<br>        (use for global bootstrap, with seqboot and CompareToBootstrap.pl)<br>  -nosupport to not compute support values<br>  -intree newick_file to set the starting tree(s)<br>  -intree1 newick_file to use this starting tree for all the alignments<br>        (for faster global bootstrap on huge alignments)<br>  -pseudo to use pseudocounts (recommended for highly gapped sequences)<br>  -gtr – generalized time-reversible model (nucleotide alignments only)<br>  -lg – Le-Gascuel 2008 model (amino acid alignments only)<br>  -wag – Whelan-And-Goldman 2001 model (amino acid alignments only)<br>  -quote – allow spaces and other restricted characters (but not ‘ ) in<br>           sequence names and quote names in the output tree (fasta input only;<br>           FastTree will not be able to read these trees back in)<br>  -noml to turn off maximum-likelihood<br>  -nome to turn off minimum-evolution NNIs and SPRs<br>        (recommended if running additional ML NNIs with -intree)<br>  -nome -mllen with -intree to optimize branch lengths for a fixed topology<br>  -cat # to specify the number of rate categories of sites (default 20)<br>      or -nocat to use constant rates<br>  -gamma – after optimizing the tree under the CAT approximation,<br>      rescale the lengths to optimize the Gamma20 likelihood<br>  -constraints constraintAlignment to constrain the topology search<br>       constraintAlignment should have 1s or 0s to indicates splits<br>  -expert – see more options<br>For more information, see <a href="http://www.microbesonline.org/fasttree/" target="_blank" rel="noopener">http://www.microbesonline.org/fasttree/</a></number></p>]]></content>
+      
+      <categories>
+          
+          <category> 生物信息 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 系统发育树 </tag>
+            
+            <tag> FastTree </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2018/04/05/hello-world/"/>
+      <url>/2018/04/05/hello-world/</url>
+      <content type="html"><![CDATA[]]></content>
+      
+      
+    </entry>
+    
+  
+  
+</search>
