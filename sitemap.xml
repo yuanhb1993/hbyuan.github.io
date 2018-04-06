@@ -1,44 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    
+  
   <url>
     <loc>https://www.yuanhb.cn/2018/04/05/hello-world/</loc>
-    <lastmod>2018-04-06T05:18:52.098Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2018-04-05T04:14:34.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
     
+    <lastmod>2018-04-06T05:18:52.098Z</lastmod>
+    
+  </url>
+  
   <url>
     <loc>https://www.yuanhb.cn/2018/04/06/FastTree/</loc>
+    
     <lastmod>2018-04-06T05:02:03.143Z</lastmod>
-    <data>
-        <display>
-        <title>系统发育树建树工具-FastTree使用</title>
-        <pubTime>2018-04-06T04:14:34.000Z</pubTime>
-        
-        <tag>系统发育树 </tag>
-         
-        <tag>FastTree </tag>
-         
-         
-           
-             
-              <breadCrumb title="生物信息" url="https://www.yuanhb.cn/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
+  </url>
+  
+  <url>
+    <loc>https://www.yuanhb.cn/tags/index.html</loc>
     
+    <lastmod>2018-04-06T03:56:51.711Z</lastmod>
     
+  </url>
+  
+  <url>
+    <loc>https://www.yuanhb.cn/categories/index.html</loc>
+    
+    <lastmod>2018-04-06T03:56:35.966Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.yuanhb.cn/about/index.html</loc>
+    
+    <lastmod>2018-04-06T03:56:12.948Z</lastmod>
+    
+  </url>
+  
 </urlset>
