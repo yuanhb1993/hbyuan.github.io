@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="Yuan HB&#39;s Blog">
 <meta property="og:description" content="安装install.packages(“data.table”)library(data.table) Data.table 与data.frame可互相转换  dt &amp;lt;- data.table(a=c(‘A’,’B’,’C’,’A’,’A’,’B’),b=rnorm(6))dt2&amp;lt;-data.frame(dt)   df&amp;lt;-data.frame(a=c(‘A’,’B’,’C’,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-06T12:45:53.147Z">
+<meta property="og:updated_time" content="2018-04-06T14:13:48.333Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据处理之Data.table包">
 <meta name="twitter:description" content="安装install.packages(“data.table”)library(data.table) Data.table 与data.frame可互相转换  dt &amp;lt;- data.table(a=c(‘A’,’B’,’C’,’A’,’A’,’B’),b=rnorm(6))dt2&amp;lt;-data.frame(dt)   df&amp;lt;-data.frame(a=c(‘A’,’B’,’C’,">
@@ -367,7 +367,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-06T20:45:53+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-06T22:13:48+08:00">
                 2018-04-06
               </time>
             
@@ -444,7 +444,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  589 words
+                  651 words
                 </span>
               
 
@@ -644,10 +644,51 @@
 </li>
 <li><p>合并两个数据集的数据</p>
 <blockquote>
-<p>student[score,nomatch=NA,mult=”all”]</p>
+<p>student[score,nomatch=NA,mult=”all”] #两数据集key交集</p>
 </blockquote>
 </li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>JOIN type</th>
+<th>DT syntax</th>
+<th>data.table::merge() syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INNER</td>
+<td>X[Y, nomatch=0]</td>
+<td>merge(X, Y, all=FALSE)</td>
+</tr>
+<tr>
+<td>LEFT OUTER</td>
+<td>Y[X]</td>
+<td>merge(X, Y, all.x=TRUE)</td>
+</tr>
+<tr>
+<td>RIGHT OUTER</td>
+<td>X[Y]</td>
+<td>merge(X, Y, all.y=TRUE)</td>
+</tr>
+<tr>
+<td>FULL OUTER</td>
+<td>-</td>
+<td>merge(X, Y, all=TRUE)</td>
+</tr>
+<tr>
+<td>FULL OUTER WHERE NULL (NOT INNER)</td>
+<td>-</td>
+<td>merge(X, Y, all=TRUE), subset NA</td>
+</tr>
+<tr>
+<td>CROSS (cartesian)</td>
+<td>-</td>
+<td>- (see below)</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
