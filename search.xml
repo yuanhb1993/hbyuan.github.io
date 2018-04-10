@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>Email writting</title>
+      <link href="/2018/04/10/email-writting/"/>
+      <url>/2018/04/10/email-writting/</url>
+      <content type="html"><![CDATA[<h1 id="Header-抬头"><a href="#Header-抬头" class="headerlink" title="Header 抬头"></a>Header 抬头</h1><p>一个标准的email邮件的结构包括header 和 body 两个部分。<br>Header 含有几个关于邮件信息的区域，包括收(发)人信息，日期，和主题。对于接受到的邮件，一般只展示最相关的信息，剩下的隐藏。<br>eg:</p><ul><li>From</li><li>To</li><li>Cc</li><li>Bcc</li><li>Subject</li></ul><p><code>To</code>表示主要收件人<br><code>Cc</code>表示次要收件人<br><code>Bcc</code>较少使用，其地址对于<code>Cc</code>是不可见的<br><code>Subject</code>是信息的高度概括<br><code>date</code>或<code>sent</code>表示发送日期<br><a id="more"></a></p><h1 id="A-Meaningful-Subject-Line-主题"><a href="#A-Meaningful-Subject-Line-主题" class="headerlink" title="A Meaningful Subject Line 主题"></a>A Meaningful Subject Line 主题</h1><ul><li><code>subject</code>主题行，是收到邮件的“第一眼”，可以决定接收者会不会打开邮件，所以很重要，永远不要空着。</li><li>提供合适的信息：不要太短，比如“meating“这种，让人一脸懵逼。<blockquote><p>”Reminder of 9 am meeting on Jan. 10, Mondan on Final Project“这种就会比较好</p></blockquote></li><li>不要用命令语气，除非你是Boss</li><li>表达清晰，突出重点，什么“来自朋友的问候”就不能用于正式的邮件</li><li>用词准确，严谨，也要不卑不亢，不能给人不自信的表现（谦虚过度）。“Could you tell if there are any graduate programs offered by your derpartment that fit me?”这种就比较弱。 </li></ul><h1 id="Body-主体"><a href="#Body-主体" class="headerlink" title="Body 主体"></a>Body 主体</h1><p>虽然邮件比信一般来说会简短，但是信的大部分写作规则都适用于邮件。</p><ul><li>记得打招呼，表示尊敬<br>需要根据关系确定问候语气，<code>hello</code> <code>hi</code>比较万金油，一般不会错</li><li>记得介绍你自己<br>如果是陌生人这点尤其重要，在开始就应该这么做。</li><li>发送前记得检查拼写</li><li>正式邮件切忌使用缩写（第一次出现需要注明）和表情符</li><li>句子表达准确合适</li><li>每个邮件尽量只传递一个信息或事务</li><li>如果有附件，记得在正文说明，让接收者知道附件的大概内容，不然可能会被忽略</li><li>正式邮件和非正式邮件用语要严格区分<h1 id="Signature-签名"><a href="#Signature-签名" class="headerlink" title="Signature 签名"></a>Signature 签名</h1></li><li>签名表示发送者的信息，一般统一设置好，工作邮件一定要高大上一点，显得正式。</li><li>一般来说需要有发送者的姓名，地址，电话。如果是商业等正式的工作类邮件，还要加上公司logo，免责声明，职位等信息。当然有必要还是要加上邮件地址，传真等。</li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 英语 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> email </tag>
+            
+            <tag> writting skill </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>数据处理之Data.table包</title>
       <link href="/2018/04/06/Data.table/"/>
       <url>/2018/04/06/Data.table/</url>
